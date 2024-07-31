@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: rgb(7, 111, 190);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin: 0;
+    }
+    .img-container {
+      position: relative;
+      height: 500px;
+      width: 800px;
+      border: 3px solid #fff;
+      overflow: hidden;
+    }
+    .img-container img {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <figure class="img-container">
+    <img src="OIP (6).jpg">
+  </figure>
+  <script>
+    let imgContainer = document.querySelector('.img-container');
+    let image = document.querySelector('.img-container img');
+
+    imgContainer.addEventListener("mousemove", function(event) {
+      let clientX = event.clientX - imgContainer.offsetLeft;
+      let clientY = event.clientY - imgContainer.offsetTop;
+      let mWidth = imgContainer.offsetWidth;
+      let mHeight = imgContainer.offsetHeight;
+
+      let percentX = clientX / mWidth * 100;
+      let percentY = clientY / mHeight * 100;
+
+      image.style.transform = 'translate(-' + percentX + '%,-' + percentY + '%) scale(2)';
+    });
+
+    imgContainer.addEventListener("mouseleave", function() {
+      image.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+  </script>
+</body>
+</html>
