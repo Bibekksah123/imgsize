@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-color:rgb(7, 111, 190);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content:space-around;
+      margin: 0;
+    }
+    .img-cotnainer{
+      position: relative;
+      height: 500px;
+      width: 800px;
+      border: 3px solid #fff;
+    overflow: hidden;
+    }
+    .img-cotnainer img{
+      position: absolute;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      overflow: hidden;
+     
+    }
+  </style>
+</head>
+<body>
+ <figure class="img-container">
+  <img src="OIP (6).jpg" alt="">
+ </figure>
+  <script>
+    let imgschroller=document.querySelector('.img-container');
+    let image=document.querySelector('.img-container img');
+   
+    imgschroller.addEventListener("mousemove",function(){
+      image.style.transform='translate(-'+clientx+'%,-'+clientY+'%) scale(2)'
+      clientX=event.clientX-imgschroller.offsetLeft
+      clientY=event.clientY-imgschroller.offsetTop
+      mWidth=imgschroller.offsetWidth
+      mHeight=imgschroller.offsetHeight
+      clientx=clientx/mWidth*100
+      clientY=clientY/mHeight*100
+    })
+    imgschroller.addEventListener("mouseleave",function(){
+      image.style.transform='translate(-50%,-50%) scale(1)'
+    })
+  </script>
+</body>
+</html>
